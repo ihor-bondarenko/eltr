@@ -27,6 +27,16 @@ var webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
+    new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+        Popper: ['popper.js', 'default'],
+        "Tether": 'tether',
+        // In case you imported plugins individually, you must also require them here:
+        Util: "exports-loader?Util!bootstrap/js/dist/util",
+        Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown",
+      }),
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env
