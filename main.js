@@ -33,7 +33,13 @@ function createWindow () {
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 console.log(mainWindow.webContents.getPrinters());
-  mainWindow.webContents.print({'deviceName':'Samsung-X4300', silent: true});
+  //alert(mainWindow.webContents.getPrinters());
+  let dialog = electron.dialog;
+  dialog.showMessageBox(mainWindow,{
+    'title': '123',
+    'message': JSON.stringify(mainWindow.webContents.getPrinters())
+  });
+  //mainWindow.webContents.print({'deviceName':'Samsung-X4300', silent: true});
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows
