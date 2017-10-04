@@ -32,7 +32,8 @@ function createWindow () {
   require('devtron').install()
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
-
+console.log(mainWindow.webContents.getPrinters());
+  mainWindow.webContents.print({'deviceName':'Samsung-X4300', silent: true});
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows
