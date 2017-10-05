@@ -7,7 +7,8 @@
         <option v-for="printer in listPrinters" v-bind:value="printer.name">{{ printer.name }}</option>
       </select>
       <i class="material-icons md-48 print-button" v-on:click="printAction">print</i>
-      <p>{{ $t("message.hello") }}</p>
+      <h1>{{ 'My nice title' | translate }}</h1>
+  			<p>{{ $t('content', {'type': 'nice'}) }}</p>
   </div>
 </template>
 
@@ -32,6 +33,7 @@ export default {
   },
   methods: {
     printAction () {
+      this.$i18n.set('de')
       EventBus.$emit('test', this.selectedPrinter)
     }
   }

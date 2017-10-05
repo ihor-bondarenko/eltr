@@ -5,10 +5,9 @@ import Vuex from 'vuex'
 import App from './App'
 import router from './router'
 import 'bootstrap'
-import VueI18n from 'vue-i18n'
+import vuexI18n from 'vuex-i18n';
 import {ipcRenderer} from './helpers/ipc-manager'
 Vue.use(Vuex)
-Vue.use(VueI18n)
 Vue.config.productionTip = false
 
 const store = new Vuex.Store({
@@ -22,26 +21,22 @@ const store = new Vuex.Store({
     }
   }
 })
+Vue.use(vuexI18n.plugin, store);
+const translationsEn = {
+  'content': 'This is some {type} content'
+};
 
-const messages = {
-  en: {
-    message: {
-      hello: 'hello world'
-    }
-  },
-  ja: {
-    message: {
-      hello: 'japans hello'
-    }
-  }
-}
+// translations can be kept in separate files for each language
+// i.e. resources/i18n/de.json.
+const translationsDe = {
+  'My nice title': 'Ein schöner Titel',
+  'content': 'Dies ist ein toller Inhalt'
+};
+Vue.i18n.add('en', translationsEn);
+Vue.i18n.add('de', translationsDe);
 
-// Create VueI18n instance with options
-const i18n = new VueI18n({
-  locale: 'ja', // set locale
-  messages // set locale messages
-})
-
+// set the start locale to use
+Vue.i18n.set('en');
 if (typeof (ipcRenderer) !== 'undefined') {
   ipcRenderer.on('list-printers', function (event, arg) {
     store.commit('setPrinterList', arg)
@@ -53,7 +48,6 @@ new Vue({
   el: '#app',
   store,
   router,
-  i18n,
   template: '<App/>',
   components: { App }
 })
