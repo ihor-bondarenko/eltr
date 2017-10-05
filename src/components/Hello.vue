@@ -7,6 +7,7 @@
         <option v-for="printer in listPrinters" v-bind:value="printer.name">{{ printer.name }}</option>
       </select>
       <i class="material-icons md-48 print-button" v-on:click="printAction">print</i>
+      <p>{{ $t("message.hello") }}</p>
   </div>
 </template>
 

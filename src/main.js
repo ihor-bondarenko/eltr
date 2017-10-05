@@ -5,8 +5,10 @@ import Vuex from 'vuex'
 import App from './App'
 import router from './router'
 import 'bootstrap'
+import VueI18n from 'vue-i18n'
 import {ipcRenderer} from './helpers/ipc-manager'
 Vue.use(Vuex)
+Vue.use(VueI18n)
 Vue.config.productionTip = false
 
 const store = new Vuex.Store({
@@ -20,6 +22,26 @@ const store = new Vuex.Store({
     }
   }
 })
+
+const messages = {
+  en: {
+    message: {
+      hello: 'hello world'
+    }
+  },
+  ja: {
+    message: {
+      hello: 'japans hello'
+    }
+  }
+}
+
+// Create VueI18n instance with options
+const i18n = new VueI18n({
+  locale: 'ja', // set locale
+  messages // set locale messages
+})
+
 if (typeof (ipcRenderer) !== 'undefined') {
   ipcRenderer.on('list-printers', function (event, arg) {
     store.commit('setPrinterList', arg)
@@ -31,6 +53,7 @@ new Vue({
   el: '#app',
   store,
   router,
+  i18n,
   template: '<App/>',
   components: { App }
 })
