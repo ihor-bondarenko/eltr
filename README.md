@@ -1,6 +1,6 @@
-# commander_trainer
+# vue trainer
 
-> Commander trainer system
+> vue trainer system
 
 ## Build Setup
 
