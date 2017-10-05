@@ -1,3 +1,3 @@
-const ipcRenderer = window.window.ipcRenderer
+const ipcRenderer = window.ipcRenderer
 
 export {ipcRenderer};

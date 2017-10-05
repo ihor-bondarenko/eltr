@@ -20,11 +20,12 @@ const store = new Vuex.Store({
     }
   }
 })
-ipcRenderer.on('list-printers', function (event, arg) {
-  store.commit('setPrinterList', arg)
-});
-
-ipcRenderer.send('get-printers', 'ping')
+if (typeof (ipcRenderer) !== 'undefined') {
+  ipcRenderer.on('list-printers', function (event, arg) {
+    store.commit('setPrinterList', arg)
+  })
+  ipcRenderer.send('get-printers', 'ping')
+}
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
