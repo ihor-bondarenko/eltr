@@ -25,8 +25,10 @@ function createWindow () {
     protocol: 'file:',
     slashes: true
   }))
+  if(process.env.NODE_ENV === 'development'){
+    mainWindow.webContents.openDevTools()
+  }
 
-  mainWindow.webContents.openDevTools()
   mainWindow.center();
   //mainWindow.maximize()
   require('devtron').install()
