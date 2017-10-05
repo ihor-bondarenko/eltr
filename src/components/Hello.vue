@@ -31,8 +31,7 @@ export default {
   },
   methods: {
     printAction () {
-      console.log('print')
-      EventBus.$emit('test', 'hi')
+      EventBus.$emit('test', this.selectedPrinter)
     }
   }
 }

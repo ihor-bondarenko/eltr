@@ -19,9 +19,8 @@ export default {
     printers: []
   },
   mounted: function () {
-    console.log(this);
-    EventBus.$on('test', function (msg) {
-        console.log(msg)
+    EventBus.$on('test', function (printer) {
+        console.log(printer)
     })
   },
   computed: {}
