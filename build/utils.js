@@ -9,6 +9,13 @@ exports.assetsPath = function (_path) {
   return path.posix.join(assetsSubDirectory, _path)
 }
 
+exports.assetsRoot = function(_path){
+  var rootDirectory = process.env.NODE_ENV === 'production'
+  ? config.build.assetsRoot
+  : config.dev.assetsRoot
+  return path.posix.join(rootDirectory, _path)
+}
+
 exports.cssLoaders = function (options) {
   options = options || {}
 

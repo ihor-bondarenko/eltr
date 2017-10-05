@@ -9,7 +9,8 @@ export default new Router({
     {
       path: '/',
       name: 'Hello',
-      component: Hello
+      component: Hello,
+      props: () => ({ listPrinters: '12213' })
     }
   ]
 })

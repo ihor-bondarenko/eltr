@@ -1,31 +1,38 @@
 <template>
-  <div class="hello">
+  <div class="jumbotron">
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+      <label for="printerList">Printer</label>
+      <select class="custom-select" id="printerList" v-model="selectedPrinter">
+        <option selected>-</option>
+        <option v-for="printer in listPrinters" v-bind:value="printer.name">{{ printer.name }}</option>
+      </select>
+      <i class="material-icons md-48 print-button" v-on:click="printAction">print</i>
   </div>
 </template>
 
 <script>
+import { EventBus } from '../helpers/event-bus.js'
+
 export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Trainer',
+      selectedPrinter: ''
+    }
+  },
+  mounted: function () {
+    console.log('hello module')
+  },
+  computed: {
+    listPrinters () {
+      return this.$store.state.printers
+    }
+  },
+  methods: {
+    printAction () {
+      console.log('print')
+      EventBus.$emit('test', 'hi')
     }
   }
 }
@@ -49,5 +56,13 @@ li {
 
 a {
   color: #42b983;
+}
+
+.print-button {
+  font-size: 48dp;
+}
+
+.print-button:hover {
+  cursor: pointer;
 }
 </style>

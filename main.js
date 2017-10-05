@@ -6,6 +6,7 @@ const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
 const url = require('url')
+const {ipcMain} = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -36,11 +37,15 @@ function createWindow () {
   // mainWindow.webContents.openDevTools()
 console.log(mainWindow.webContents.getPrinters());
   //alert(mainWindow.webContents.getPrinters());
-  let dialog = electron.dialog;
+  /*let dialog = electron.dialog;
   dialog.showMessageBox(mainWindow,{
     'title': '123',
     'message': JSON.stringify(mainWindow.webContents.getPrinters())
-  });
+  });*/
+  ipcMain.on('get-printers', (event, arg) => {
+    let printers = mainWindow.webContents.getPrinters();
+    event.sender.send('list-printers', printers)
+  })
   //mainWindow.webContents.print({'deviceName':'Samsung-X4300', silent: true});
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
