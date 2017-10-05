@@ -32,7 +32,10 @@ function createWindow () {
 
   mainWindow.center();
   //mainWindow.maximize()
-  require('devtron').install()
+
+  if(process.env.NODE_ENV === 'development'){
+    require('devtron').install()
+  }
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 console.log(mainWindow.webContents.getPrinters());
