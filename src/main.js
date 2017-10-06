@@ -6,9 +6,13 @@ import App from './App'
 import router from './router'
 import 'bootstrap'
 import vuexI18n from 'vuex-i18n';
+import VueResource from 'vue-resource';
 import {ipcRenderer} from './helpers/ipc-manager'
 Vue.use(Vuex)
 Vue.config.productionTip = false
+
+Vue.use(VueResource);
+Vue.http.options.root = 'api/v1';
 
 const store = new Vuex.Store({
   state: {

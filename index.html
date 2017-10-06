@@ -6,18 +6,6 @@
     <title>commander_trainer</title>
   </head>
   <script>
-  if(typeof(require) == 'undefined') {
-    var electron = {
-      ipcRenderer: {
-        on: function(){},
-        emit: function(){},
-        send: function(){}
-      }
-    }
-  }else{
-    var electron = require('electron');
-  }
-  var ipcRenderer = electron.ipcRenderer;
   </script>
   <body>
     <div id="app" class="container"></div>
